@@ -11,13 +11,17 @@ import java.net.Socket;
 public class KnockKnockServer {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exceptions {
         Scanner sc = new Scanner(System.in);
 
        int portNum = Integer.parseInt(args[0]);
+       
+       ServerSocket serverSocket;
+       
+        ServerSocket serverSocket = new ServerSocket(portNum);
+      
        do {
             try (
-                ServerSocket serverSocket = new ServerSocket(portNum);
                 Socket clientSocket = serverSocket.accept();
                 PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),
                         true);
