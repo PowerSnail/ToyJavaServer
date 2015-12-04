@@ -13,8 +13,7 @@ public class KnockKnockServer {
 
     public static void main(String[] args) {
 
-//        int portNum = Integer.parseInt(args[0]);
-        int portNum = 4444;
+       int portNum = Integer.parseInt(args[0]);
         try (
             ServerSocket serverSocket = new ServerSocket(portNum);
             Socket clientSocket = serverSocket.accept();
