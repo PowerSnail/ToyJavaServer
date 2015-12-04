@@ -36,7 +36,7 @@ public class KnockKnockServer {
                     break;
             }
         } catch(IOException e) {
-
+		System.out.println("There is an IO problem");
         }
 
     }
