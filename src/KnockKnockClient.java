@@ -11,11 +11,10 @@ import java.util.Scanner;
 public class KnockKnockClient {
 
     public static void main(String[] args) {
-//        String hostName = args[0];
-//        int portNumber = Integer.parseInt(args[1]);
+        String hostName = args[0];
+        int portNumber = Integer.parseInt(args[1]);
 
-        String hostName = "localhost";
-        int portNumber = 4444;
+
         try (
                 Socket kkSocket = new Socket(hostName, portNumber);
                 PrintWriter out = new PrintWriter(kkSocket.getOutputStream(),
