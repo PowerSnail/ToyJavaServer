@@ -18,12 +18,14 @@ public class KKMultiServerThread extends Thread {
                     socket.getInputStream()));
         ) {
             String inputLine, outputLine;
-            KnockKnockProtocol kkp = new KnockKnockProtocol();
-            outputLine = kkp.processInput(null);
+            // KnockKnockProtocol kkp = new KnockKnockProtocol();
+            MyProtocol myP = new MyProtocol();
+            // outputLine = kkp.processInput(null);
+            outputLine = myP.processInput(null);
             out.println(outputLine);
  
             while ((inputLine = in.readLine()) != null) {
-                outputLine = kkp.processInput(inputLine);
+                outputLine = myP.processInput(inputLine);
                 out.println(outputLine);
                 if (outputLine.equals("Bye"))
                     break;
