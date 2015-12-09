@@ -11,32 +11,43 @@ import java.net.Socket;
 public class KnockKnockServer {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exceptions {
+        Scanner sc = new Scanner(System.in);
 
        int portNum = Integer.parseInt(args[0]);
-        try (
-            ServerSocket serverSocket = new ServerSocket(portNum);
-            Socket clientSocket = serverSocket.accept();
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),
-                    true);
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(clientSocket.getInputStream())
-            )
-        ) {
-            String inputLine, outputLine;
-            KnockKnockProtocol kkp = new KnockKnockProtocol();
-            outputLine = kkp.processInput(null);
-            out.println(outputLine);
-
-            while ((inputLine = in.readLine()) != null) {
-                outputLine = kkp.processInput(inputLine);
+       
+       ServerSocket serverSocket;
+       
+        ServerSocket serverSocket = new ServerSocket(portNum);
+      
+       do {
+            try (
+                Socket clientSocket = serverSocket.accept();
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),
+                        true);
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(clientSocket.getInputStream())
+                )
+            ) {
+                String inputLine, outputLine;
+                KnockKnockProtocol kkp = new KnockKnockProtocol();
+                outputLine = kkp.processInput(null);
                 out.println(outputLine);
-                if(outputLine.equals("Bye."))
-                    break;
+    
+                while ((inputLine = in.readLine()) != null) {
+                    outputLine = kkp.processInput(inputLine);
+                    out.println(outputLine);
+                    if(outputLine.equals("Bye."))
+                        break;
+                }
+            } catch(IOException e) {
+                System.out.println("There is an IO problem");
             }
-        } catch(IOException e) {
-		System.out.println("There is an IO problem");
-        }
+            
+            boolean quit;
+            if (sc.hasNextLine()) quit = sc.nextLine().equals("q");
+            else quit = false;
+       } while (!quit)
 
     }
 }
