@@ -38,7 +38,7 @@ public class KnockKnockClient {
             }
 
         } catch (IOException e) {
-                System.out.println("There is an IO problem");
+                System.out.println("There is an IO problem!");
         }
 
 
