@@ -1,5 +1,6 @@
 import java.util.HashMap;
 public class MyProtocol {
+	private int state = MyProtocol.WAITING;
 	 private static final int WAITING = 0;
 	 private static final int GREETED = 1;
 	 private static final int PROMPTEDFORPASS = 2;
@@ -92,9 +93,11 @@ public class MyProtocol {
 				return "Logged out";
 			} else {
 			 String[] command = theInput.split(" ");
-			 DummyLambda action = commands.get(decode(command[0]));
-			 return action.operation(command);
+			 DummyLambda action = commands[decode(command[0])];
+			 		return action.operation(command);
 			}
 		 }
+		 
+		 return "";
 	 }
 }
