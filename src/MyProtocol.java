@@ -65,7 +65,7 @@ public class MyProtocol {
 		 if (state == WAITING) 
 		 {
 			 state = GREETED;
-			 return "Welcome! Please enter your username: \n> ";
+			 return "Welcome! Please enter your username: > ";
 		 } 
 		 else if (state == GREETED) 
 		 {
@@ -78,12 +78,12 @@ public class MyProtocol {
 			 if (auth.authenticate(theInput)) 
 			 {
 				 state = LOGGEDIN;
-				 return "Successfully logged in! \nCommands shall be entered now!";
+				 return "Successfully logged in! Commands shall be entered now!";
 			 } 
 			 else 
 			 {
 				 state = WAITING;
-				 return "ERROR! Please re-enter your username and passwords! \n Please Enter your username: \n> ";
+				 return "ERROR! Please re-enter your username and passwords! Please Enter your username: ";
 			 }
 		 } 
 		 else if (state == LOGGEDIN) 
